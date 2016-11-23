@@ -1,0 +1,17 @@
+Goal: write a model-view-controller blog.
+
+GENERAL REQUIREMENTS
+1. Do it in mongodb and in sequelize (shows that you decoupled the models)
+2. Do it with 2 different layouts (shows that you decoupled the views)
+
+1. A blog backend with the ability to:
+	a) Authenticate the user (import a secret file with whitelisted usernames and passwords)
+	b) Create a post
+	c) See a list of posts
+		* With the ability to delete
+		* With the ability to edit
+
+2. A blog frontend with the ability to:
+	a) See a post (detailed page)
+	b) See a list of posts (archive)
+
