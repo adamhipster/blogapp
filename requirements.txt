@@ -5,13 +5,15 @@ GENERAL REQUIREMENTS
 2. Do it with 2 different layouts (shows that you decoupled the views)
 
 1. A blog backend with the ability to:
-	a) Authenticate the user (import a secret file with whitelisted usernames and passwords)
+	a) Authenticate the user (user creation is via database only with a hashed password)
 	b) Create a post
 	c) See a list of posts
 		* With the ability to delete
 		* With the ability to edit
+	d) If needed use sessions
 
 2. A blog frontend with the ability to:
 	a) See a post (detailed page)
 	b) See a list of posts (archive)
 
+3. Bonus: keep a list of old title links and redirect to the right post where necessary

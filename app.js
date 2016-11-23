@@ -2,11 +2,18 @@ let express = require('express');
 let app = express();
 let portNumber = 3000;
 
-//Currently not handling requests yet
-app.get('/', function(request, response){
-	response.sendFile(__dirname + '/index.html');
-});
-app.use('/', express.static(__dirname + '/js'));
+//see http://stackoverflow.com/questions/24330014/bodyparser-is-deprecated-express-4
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+
+
+
+//ROUTES
+const postRouter = require(__dirname + '/controllers/post.js');
+app.use('/', postRouter);
 
 
 app.listen(portNumber, function(){

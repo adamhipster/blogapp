@@ -1,0 +1,21 @@
+Create a mongodb model of users and posts.
+DONE
+
+Display an archive
+DONE
+
+Create a post
+DONE -- without authentication or sessions
+
+Get post by id and title
+DONE
+
+Delete a post by title
+DONE -- without authentication or sessions
+
+Probleem: titels zijn niet unieke keys
+Oplossing: maak ze unieke keys, I know beetje hackerig maar wil er niet veel aandacht aan kwijt
+
+Edit a post by title
+DONE -- without authentication or sessions
+

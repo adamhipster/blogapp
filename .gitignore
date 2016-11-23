@@ -6,10 +6,7 @@ TO DO
 *.sublime-workspace
 
 # App specific
-.env
-config.js
-ignore/*
-dump.rdb
+admin.js
 
 # Mac specific
 .DS_Store

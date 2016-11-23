@@ -1,0 +1,29 @@
+{
+  "name": "blogapp",
+  "version": "0.0.0",
+  "description": "Simple blog app in node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mettamage/blogapp.git"
+  },
+  "keywords": [
+    "Blog",
+    "node.js"
+  ],
+  "author": "Melvin Roest",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mettamage/blogapp/issues"
+  },
+  "homepage": "https://github.com/mettamage/blogapp#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11",
+    "monk": "^3.1.3"
+  }
+}
