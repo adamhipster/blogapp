@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require(__dirname + '/../models/auth.js');
+const bcrypt = require('bcrypt');
 
 router.route('/login')
 	.get( (request, response) => {
@@ -16,26 +17,29 @@ router.route('/login')
 		console.log(session.username);
 		model.getUsername(session.username)
 		.then( (modelUsername) => {
-			console.log('modelUsername: ' + modelUsername);
-			if(session.username === modelUsername){ 
-				return Promise.resolve(model.getPassword(session.password) ); 
+			if(session.username === modelUsername){
+				return Promise.resolve(model.getPassword(session.username) ); 
 			}
 			else{
 				return Promise.reject('username was not found.');
 			}
 		})
-		.then( modelPassword => {
+		.then( (modelPassword) => {
 			console.log('modelPassword: ' + modelPassword);
-			if(session.password === modelPassword){
-				response.redirect('/admin');
-			}
-			else{
-				response.render("Not authenticated.... Try again\n");
-			}
+			bcrypt.compare(session.password, modelPassword, (err, samePasswords) => {
+				console.log('err ', err);
+				console.log('samePasswords: ' + samePasswords);
+				if(samePasswords){
+					response.redirect('/admin');
+				}
+				else{
+					response.redirect('login?auth=false');
+				}
+			});
 		})
 		.catch(error => {
 			console.log(error);
-			response.redirect('login/auth=false');
+			response.redirect('login?auth=false');
 		});
 	});
 

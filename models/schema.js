@@ -1,7 +1,10 @@
 //mongodb
 
+//password:
+//open node and type require('bcrypt') and then
+//bcrypt.hash('your_password', 10, (err, hash) => { console.log(hash) })
 db.users.insertOne(
-	{firstname: "Melvin", lastname: "Roest", username: "mella", password: "paard"}
+	{firstname: "Melvin", lastname: "Roest", username: "mella", password: "$2a$10$Ggg0Usp6T2a.lJMbTWrLEupiZUJBjH4uQy.G1tpzxu9gX9EtnJyUm"}
 )
 
 db.posts.insertOne(

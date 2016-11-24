@@ -8,15 +8,15 @@ const users = db.get('users');
 
 exports.getUsername = (username) => {
 	return users.findOne({username: username}, 'username')
-	.then( result => {
+	.then( (result) => {
 		console.log('result: ' + result.username);
 		return result.username;
 	});
 }
 
-exports.getPassword = (password) => {
-	return users.findOne({password: password}, 'password')
-	.then( result => {
+exports.getPassword = (username) => {
+	return users.findOne({username: username}, 'password')
+	.then( (result) => {
 		return result.password;
 	});
 }

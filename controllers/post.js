@@ -111,7 +111,9 @@ router.route('/:postTitle')
 //deletes *all* posts with the same title, since the key should be unique (not implemented yet)
 router.route('/admin/:postTitle/delete')
 	.get( (request, response) => {
-		let postTitle = model.deletePostByTitle(request.params.postTitle);
+		const title = decodeURI(request.params.postTitle);
+		console.log('title ' + title);
+		let postTitle = model.deletePostByTitle(title);
 		postTitle.then( (result) => {
 			console.log('post deleted\n');
 			console.log(result);
