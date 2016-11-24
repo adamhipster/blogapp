@@ -3,6 +3,8 @@
 ##My requirements list (not finished)
 See requirements.txt ;)
 
+Still a work in progress.
+
 ##How to make it work on your own machine
 
 You need to have homebrew installed or something similar.
@@ -35,7 +37,4 @@ The fun starts at:
 
 To logout type: `localhost:3000/auth/logout`
 
-Still a work in progress :)
-
-markdown test:
 
