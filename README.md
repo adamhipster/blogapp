@@ -20,8 +20,7 @@ brew install mongodb
 mongod --dbpath /tmp #starts mongodb server
 ```
 
-Start up the mongodb client to add an initial user with the username `mella` and (hashed) password `paard`
-``mongo``
+Start up the mongodb client by typing `mongo` and add an initial user with the username `mella` and (hashed) password `paard` via the client.
 In the mongo db client you type:
 
 ```
