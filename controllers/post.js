@@ -7,8 +7,13 @@ const model = require(__dirname + '/../models/post.js');
 router.route('/archive')
 	.get( (request, response) => {
 		let posts = model.getAllPosts();
-		posts.then( (result) => {
-			response.send(result);
+		posts.then( (allPosts) => {
+			console.log('routing /archive...\n');
+			console.log(allPosts);
+			response.render('archive',
+			{
+			posts: allPosts,	
+			});
 		});
 	});
 
@@ -102,8 +107,13 @@ router.route('/posts/:postId')
 router.route('/:postTitle')
 	.get( (request, response) => {
 		let postTitle = model.getPostByTitle(request.params.postTitle);
-		postTitle.then( (result) => {
-			response.send(result);
+		postTitle.then( (post) => {
+			console.log('routing /:postTitle...\n');
+			console.log(post);
+			response.render('detail',
+			{
+				post: post[0],
+			});
 		});
 	});
 
