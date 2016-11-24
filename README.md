@@ -9,9 +9,6 @@ Still a work in progress.
 
 You need to have homebrew installed or something similar.
 
-To run it:
-`node app.js`
-
 To install dependencies:
 `npm install`
 
@@ -31,6 +28,11 @@ db.users.insertOne(
         {firstname: "Melvin", lastname: "Roest", username: "mella", password: "$2a$10$Ggg0Usp6T2a.lJMbTWrLEupiZUJBjH4uQy.G1tpzxu9gX9EtnJyUm"}
 )
 ```
+
+Create your own config.js in the root folder and save it with `var session_secret = 'typeinanythingyouwanthere';`
+
+To run it:
+`node app.js`
 
 The fun starts at:
 `localhost:3000/auth/login`
