@@ -39,7 +39,3 @@ Still a work in progress :)
 
 markdown test:
 
-```python
-s = "Python syntax highlighting"
-print s
-```
