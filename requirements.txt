@@ -5,12 +5,13 @@ GENERAL REQUIREMENTS
 2. Do it with 2 different layouts (shows that you decoupled the views)
 
 1. A blog backend with the ability to:
-	a) Authenticate the user (user creation is via database only with a hashed password)
+	a) Authenticate the user with sessions 
+		* Note: user creation is via database only with a hashed password
 	b) Create a post
 	c) See a list of posts
 		* With the ability to delete if admin
 		* With the ability to edit if admin
-	d) Use sessions
+	d) Hash passwords server side
 
 2. A blog frontend with the ability to:
 	a) See a post (detailed page)
@@ -23,3 +24,4 @@ GENERAL REQUIREMENTS
 	d) Deploy
 	e) Use webpack
 	f) Use dotenv
+	g) Use ajax (I prefer to start with a degradable experience)
