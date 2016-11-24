@@ -1,0 +1,15 @@
+html
+	head
+		title Admin
+	body
+		h1 Admin
+		form(name='createPost' method='POST' action='/createPost')
+			label(for='title') Title
+			br
+			input(id='pTitle' type='text' name='title')
+			br
+			label(for='post') Post
+			br
+			textarea(id='pBody' type='text'  name='body' rows='10' cols='100')
+			br
+			input(type='submit' value='submit')

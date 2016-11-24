@@ -4,15 +4,17 @@ const express = require('express');
 const router = express.Router();
 const model = require(__dirname + '/../models/post.js');
 
-const monk = require('monk')
-const db = monk('localhost:27017/blogapp');
-
 router.route('/archive')
 	.get( (request, response) => {
 		let posts = model.getAllPosts();
 		posts.then( (result) => {
 			response.send(result);
 		});
+	});
+
+router.route('/admin')
+	.get( (request, response) => {
+		response.render('admin', {username: request.session.username, password: request.session.password})
 	});
 
 //This doesn't work well with nosql databases, don't use this :P
@@ -49,6 +51,8 @@ router.route('/createPost')
 		const post = request.body;
 		const keys = Object.keys(post);
 		const vals = keys.map(key => post[key]);
+
+
 		const hasAllProperties = checkProperties(post, 'username', 'firstname', 'lastname', 'title', 'body');
 
 		if(hasAllProperties){

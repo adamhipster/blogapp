@@ -8,12 +8,18 @@ GENERAL REQUIREMENTS
 	a) Authenticate the user (user creation is via database only with a hashed password)
 	b) Create a post
 	c) See a list of posts
-		* With the ability to delete
-		* With the ability to edit
-	d) If needed use sessions
+		* With the ability to delete if admin
+		* With the ability to edit if admin
+	d) Use sessions
 
 2. A blog frontend with the ability to:
 	a) See a post (detailed page)
 	b) See a list of posts (archive)
 
-3. Bonus: keep a list of old title links and redirect to the right post where necessary
+3. Bonus:
+	a) Keep a list of old title links and redirect to the right post where necessary
+	b) Store sessions in Redis
+	c) Perform extra security over HTTPS
+	d) Deploy
+	e) Use webpack
+	f) Use dotenv

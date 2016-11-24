@@ -8,6 +8,9 @@ TO DO
 # App specific
 ignore/*
 
+# Config specific
+config.js
+
 # Mac specific
 .DS_Store
 

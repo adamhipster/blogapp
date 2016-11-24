@@ -39,3 +39,12 @@ curl --data "title=the immune response on the wim hof method&body=It's scientifi
 curl localhost:3000/WHM #Poof! Gone!
 curl localhost:3000/The%20Wim%20Hof%20Method #Tada!
 
+#Authentication (true)
+curl --data "username=mella&password=paard" localhost:3000/auth/login
+
+#Authentication (false)
+curl --data "username=mell&password=paard" localhost:3000/auth/login
+
+#Authentication (false)
+curl --data "username=mella&password=paar" localhost:3000/auth/login
+
