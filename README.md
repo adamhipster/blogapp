@@ -36,3 +36,10 @@ The fun starts at:
 To logout type: `localhost:3000/auth/logout`
 
 Still a work in progress :)
+
+markdown test:
+
+```python
+s = "Python syntax highlighting"
+print s
+```
