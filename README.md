@@ -15,17 +15,21 @@ To install dependencies:
 
 It also requires spinning up a mongodb server. For that you'd need to do:
 
-```brew install mongodb
-mongod --dbpath /tmp #starts mongodb server```
+```
+brew install mongodb
+mongod --dbpath /tmp #starts mongodb server
+```
 
 Start up the mongodb client to add an initial user with the username `mella` and (hashed) password `paard`
 ``mongo``
 In the mongo db client you type:
 
-```use blogapp
+```
+use blogapp
 db.users.insertOne(
         {firstname: "Melvin", lastname: "Roest", username: "mella", password: "$2a$10$Ggg0Usp6T2a.lJMbTWrLEupiZUJBjH4uQy.G1tpzxu9gX9EtnJyUm"}
-)```
+)
+```
 
 The fun starts at:
 `localhost:3000/auth/login`
