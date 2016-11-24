@@ -1,6 +1,9 @@
 # Personal
 TO DO
 
+# vim
+*.swp
+
 # Sublime
 *.sublime-project
 *.sublime-workspace
