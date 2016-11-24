@@ -1,15 +1,15 @@
 //mongodb
 
 db.users.insertOne(
-	{firstname: "Melvin", lastname: "Roest", username: "mella", password: "password_hashed"}
+	{firstname: "Melvin", lastname: "Roest", username: "mella", password: "paard"}
 )
 
 db.posts.insertOne(
-	{date: new Date(), username: "mella", author: "Melvin Roest", title: "The best shortest lifehack", body: "The best lifehack is hugging people. It only takes a couple of seconds and it releases a lot of oxytocin :)"}
+	{date: new Date(), username: "mella", firstname: "Melvin", lastname: "Roest", title: "Lifehack", body: "The best lifehack is hugging people. It only takes a couple of seconds and it releases a lot of oxytocin :)"}
 )
 
 db.posts.insertOne(
-	{date: new Date(), username: "mella", author: "Melvin Roest", title: "The Wim Hof Method", body: "The Wim Hof Method is a way to naturally give yourself adrenaline. Scientist from the Radboud University have proven this."}
+	{date: new Date(), username: "mella", firstname: "Melvin", lastname: "Roest", title: "Iceman", body: "The Wim Hof Method is a way to naturally give yourself adrenaline. Scientist from the Radboud University have proven this."}
 )
 
 //query methods that might be useful

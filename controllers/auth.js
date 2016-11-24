@@ -27,7 +27,7 @@ router.route('/login')
 		.then( modelPassword => {
 			console.log('modelPassword: ' + modelPassword);
 			if(session.password === modelPassword){
-				response.end("Authenticated!\n");
+				response.redirect('/admin');
 			}
 			else{
 				response.render("Not authenticated.... Try again\n");

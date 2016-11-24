@@ -24,7 +24,9 @@ app.use(session({
 
 app.use((request, response, next) => {
 	console.log('username ' + request.session.username);
-	if(request.path === '/admin'){
+	console.log(request.path);
+	const allowedAdminPath = /(^\/admin$|^\/admin\/.*)/;
+	if(allowedAdminPath.test(request.path)){
 		console.log('request.path ' + request.path);
 		if (request.session.username !== undefined){
 			console.log('access to admin\n');

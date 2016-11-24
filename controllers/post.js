@@ -12,9 +12,42 @@ router.route('/archive')
 		});
 	});
 
+/*
+ANATOMY OF A POST (_id is automatically generated)
+{
+	"_id" : ObjectId("58360fcad952a319b69c018f"),
+	"date" : ISODate("2016-11-23T21:53:14.318Z"),
+	"username" : "mella",
+	"author" : "Melvin Roest",
+	"title" : "the immune response on the wim hof method",
+	"body" : "There is an article written about it in PNAS"
+}
+*/
+
 router.route('/admin')
 	.get( (request, response) => {
 		response.render('admin', {username: request.session.username, password: request.session.password})
+	});
+
+router.route('/admin/createPost')
+	.post( (request, response) => {
+		const post = request.body;
+		const keys = Object.keys(post);
+		const vals = keys.map(key => post[key]);
+
+		const hasAllProperties = checkProperties(post, 'title', 'body');
+
+		if(hasAllProperties){
+			//also adds first and last name (in the model)
+			let createdPost = model.createPost(
+				request.session.username,  
+				post.title, 
+				post.body);
+			createdPost.then( x => response.redirect('/admin'));
+		}
+		else{
+			reportError(response, keys);
+		}
 	});
 
 //This doesn't work well with nosql databases, don't use this :P
@@ -35,45 +68,9 @@ router.route('/:postTitle')
 		});
 	});
 
-/*
-ANATOMY OF A POST (_id is automatically generated)
-{
-	"_id" : ObjectId("58360fcad952a319b69c018f"),
-	"date" : ISODate("2016-11-23T21:53:14.318Z"),
-	"username" : "mella",
-	"author" : "Melvin Roest",
-	"title" : "the immune response on the wim hof method",
-	"body" : "There is an article written about it in PNAS"
-}
-*/
-router.route('/createPost')
-	.post( (request, response) => {
-		const post = request.body;
-		const keys = Object.keys(post);
-		const vals = keys.map(key => post[key]);
 
 
-		const hasAllProperties = checkProperties(post, 'username', 'firstname', 'lastname', 'title', 'body');
-
-		if(hasAllProperties){
-			let createdPost = model.createPost(
-				post.username, 
-				post.firstname, 
-				post.lastname, 
-				post.title, 
-				post.body);
-			createdPost.then( (result) => {
-				response.send(result);
-			});
-			// .then( x => response.redirect('/'));
-		}
-		else{
-			reportError(response, keys);
-		}
-
-	});
-
-router.route('/:postTitle/delete')
+router.route('/admin/:postTitle/delete')
 	.get( (request, response) => {
 		let postTitle = model.deletePostByTitle(request.params.postTitle);
 		postTitle.then( (result) => {
@@ -81,7 +78,7 @@ router.route('/:postTitle/delete')
 		});
 	});
 
-router.route('/:postTitle/edit')
+router.route('/admin/:postTitle/edit')
 	.post( (request, response) => {
 		const post = request.body;
 		const keys = Object.keys(post);
