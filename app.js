@@ -1,4 +1,4 @@
-let config = require('./config.js');
+const config = require('./config.js');
 let express = require('express');
 let app = express();
 var session = require('express-session');
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    secret: 'secret',
+    secret: config.session_secret,
     resave: false,
     saveUninitialized: false
   }));
@@ -55,7 +55,7 @@ const adminRouter = require(__dirname + '/routes/admin.js'); //uses same model a
 const authRouter = require(__dirname + '/routes/auth.js');
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!' })
+  res.redirect('/archive');
 });
 
 app.use('/admin', adminRouter);
