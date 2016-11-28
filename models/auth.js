@@ -1,22 +1,14 @@
-const monk = require('monk')
-const url = 'localhost:27017/blogapp';
-const db = monk(url);
-const users = db.get('users');
+const bcrypt = require('bcrypt');
 
 //for development: this account exists
 //db.users.insertOne( {username: "mella", password: "paard"} )
 
-exports.getUsername = (username) => {
-	return users.findOne({username: username}, 'username')
-	.then( (result) => {
-		console.log('result: ' + result.username);
-		return result.username;
+exports.authenticate = (password, user) => {
+	return new Promise(function(resolve, reject) {
+		bcrypt.compare(password, user.password, (error, samePasswords) => {
+			if(error) reject(new Error("bcrypt.compare(args) failed:" + error));
+			resolve(samePasswords);
+		});
 	});
 }
 
-exports.getPassword = (username) => {
-	return users.findOne({username: username}, 'password')
-	.then( (result) => {
-		return result.password;
-	});
-}

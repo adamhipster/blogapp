@@ -28,17 +28,14 @@ app.use(bodyParser.urlencoded({
 
 app.use(session({
     secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
   }));
 
 app.use((request, response, next) => {
-	console.log('username ' + request.session.username);
-	console.log(request.path);
 	const allowedAdminPath = /(^\/admin$|^\/admin\/.*)/;
 	if(allowedAdminPath.test(request.path)){
-		console.log('request.path ' + request.path);
-		if (request.session.username !== undefined){
+		if (request.session.username !== false && request.session.username !== undefined){
 			console.log('access to admin\n');
 			next();
 		} else {
@@ -60,9 +57,9 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Hey', message: 'Hello there!' })
 });
 
-app.use('/', postRouter);
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
+app.use('/', postRouter);
 
 //VIEWS
 app.set('views', __dirname + '/views')

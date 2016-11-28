@@ -34,20 +34,16 @@ router.route('/')
 				title: title,
 				body: body,
 				posts: posts, 
-				username: request.session.username, 
-				password: request.session.password
 				});
-				console.log('get1 ' + request.session.isEdited);
+				console.log('isEdited: ' + request.session.isEdited);
 			}
 			else{
 			response.render('admin', 
 				{
 				action: '/admin/createPost',
 				posts: posts, 
-				username: request.session.username, 
-				password: request.session.password
 				});
-				console.log('get2 ' + request.session.isEdited);
+				console.log('isEdited ' + request.session.isEdited);
 			}
 		});
 	});

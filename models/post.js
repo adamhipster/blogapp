@@ -8,8 +8,8 @@ const users = db.get('users');
 
 exports.getAllPosts = () => {
 	return posts.find({})
-		.then( result => {
-			return result;
+		.then( allPosts => {
+			return allPosts;
 		});
 }
 
@@ -17,24 +17,23 @@ exports.getAllPosts = () => {
 //see https://automattic.github.io/monk/docs/collection/count.html
 exports.getPostById = (id) => {
 	return posts.find({})
-		.then( result => {
-			return result[id]; //return only result w/ id
+		.then( (allPosts) => {
+			return allPosts[id]; //return only result w/ id
 		});
 }
 
 exports.getPostByTitle = (title) => {
 	return posts.find({title: title})
-	db.posts.find({title: "The best shortest lifehack"})
-		.then( result => {
-			return result;
+		.then( (post) => {
+			return post;
 		});
 }
 
 //NOTE: in the original mongodb API this seems to be deprecated, which means monk is deprecated
 exports.createPost = (username, title, body) => {
 	return users.findOne({username: username}, { fields: { firstname: 1, lastname: 1} })
-	.then( (result) => {
-		return result;
+	.then( (oneUser) => {
+		return oneUser;
 	})
 	.then( (result) => {
 		console.log(result.firstname + ' ' + result.lastname);
