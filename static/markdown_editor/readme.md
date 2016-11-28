@@ -1,3 +1,8 @@
+
+I downloaded this from (https://github.com/timsayshey/Ghost-Markdown-Editor)(timsayshey/Ghost-Markdown-Editor). I created one new file called showdown_client.js in order to see how the markdown got parsed. All the other files are untouched -- if I'm not mistaken.
+
+The original readme from timsayshey:
+
 # Ghost Markdown Editor
 
 Pulled this from Ghost ( http://ghost.org/features ). Its a responsive jquery markdown editor with instant preview.
