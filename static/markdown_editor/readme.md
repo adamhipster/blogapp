@@ -1,5 +1,7 @@
 
-I downloaded this from (https://github.com/timsayshey/Ghost-Markdown-Editor). I created one new file called showdown_client.js in order to see how the markdown got parsed. All the other files are untouched -- if I'm not mistaken.
+I downloaded this from https://github.com/timsayshey/Ghost-Markdown-Editor 
+
+I created one new file called showdown_client.js in order to see how the markdown got parsed. All the other files are untouched -- if I'm not mistaken.
 
 -- mettamage
 
