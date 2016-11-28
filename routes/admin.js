@@ -30,18 +30,20 @@ router.route('/')
 				request.session.isEdited = false;
 			response.render('admin', 
 				{
-				action: '/admin/' + title + '/edit',
-				title: title,
-				body: body,
-				posts: posts, 
+					username: request.session.username,	
+					action: '/admin/' + title + '/edit',
+					title: title,
+					body: body,
+					posts: posts, 
 				});
 				console.log('isEdited: ' + request.session.isEdited);
 			}
 			else{
 			response.render('admin', 
 				{
-				action: '/admin/createPost',
-				posts: posts, 
+					username: request.session.username,
+					action: '/admin/createPost',
+					posts: posts, 
 				});
 				console.log('isEdited ' + request.session.isEdited);
 			}

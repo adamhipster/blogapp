@@ -1,14 +1,20 @@
 html
 	head
-		title Login
+		include partialViews/head.pug
 	body
+		include partialViews/nav.pug
 
-		h1 Login
-		form(name='login' method='POST' action='/auth/login')
-			input(id='uname' type='text' name='username')
-			label(for='uname') Username
-			br
-			input(id='pword' type='password' name='password')
-			label(for='login2') Password
-			br
-			input(type='submit' value='submit')
+		section.container
+			h4 Login
+			form(name='login' method='POST' action='/auth/login')
+				.input-field.s12
+					input(id='uname' type='text' name='username')
+					label(for='uname') Username
+				.input-field.s12
+					input(id='pword' type='password' name='password')
+					label(for='login2') Password
+				button.btn.waves-effect.waves-light(type='submit' name='action') Submit
+					i.material-icons.right send
+
+
+		include partialViews/footer.pug

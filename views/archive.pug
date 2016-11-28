@@ -1,4 +1,14 @@
-h1 Posts
-each post in posts
-	a(href='/'+post.title) #{post.title}
-	br
+html
+	head
+		include partialViews/head.pug
+	body
+		include partialViews/nav.pug
+		section.container
+			h4 Posts
+			each post in posts
+				br
+				a.flow-text(href='/'+post.title) #{post.title}
+				
+
+
+		include partialViews/footer.pug

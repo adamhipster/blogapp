@@ -1,23 +1,30 @@
 html
 	head
-		title Admin
+		include partialViews/head.pug
 	body
-		h1 Admin
-		form(name='createPost' method='POST' action=action)
-			label(for='title') Title
-			br
-			input(id='pTitle' type='text' name='title' value=title)
-			br
-			label(for='post') Post
-			br
-			textarea(id='pBody' type='text'  name='body' rows='10' cols='100')
-				| #{body}
-			br
-			input(type='submit' value='submit')
+		include partialViews/nav.pug
 
-		h1 Posts
-		each post in posts
-			p #{post.title}   
-				a(href='/admin/'+post.title+'/delete') delete  
-				| ... 
-				a(href='/admin/'+post.title+'/edit?title='+post.title) 'Edit'
+		section.container
+			h4 Admin
+			form(name='createPost' method='POST' action=action)
+				.input-field.s12
+					label(for='title') Title
+					input(id='pTitle' type='text' name='title' value=title)
+
+				.input-field.s12
+					label(for='post') Post
+					textarea(id='pBody' type='text'  name='body' rows='10' cols='100')
+						| #{body}
+				
+				button.btn.waves-effect.waves-light(type='submit' name='action') Submit
+					i.material-icons.right send
+
+		section.container
+			h4 Posts
+			each post in posts
+				p.flow-text <a href="/#{post.title}"> #{post.title}</a>   
+					a.material-icons(href='/admin/'+post.title+'/delete') delete  
+					a.material-icons(href='/admin/'+post.title+'/edit?title='+post.title) edit
+
+
+		include partialViews/footer.pug

@@ -8,11 +8,11 @@ router.route('/archive')
 	.get( (request, response) => {
 		let posts = model.getAllPosts();
 		posts.then( (allPosts) => {
-			console.log('routing /archive...\n');
-			console.log(allPosts);
+			console.log(request.session.username);
 			response.render('archive',
 			{
-			posts: allPosts,	
+				username: request.session.username,
+				posts: allPosts,	
 			});
 		});
 	});
@@ -35,6 +35,7 @@ router.route('/:postTitle')
 			console.log(post);
 			response.render('detail',
 			{
+				username: request.session.username,
 				post: post[0],
 			});
 		});

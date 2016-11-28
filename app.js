@@ -8,9 +8,10 @@ const fs = require('fs');
 
 sass.render({
 	file: __dirname + '/static/styles/main.scss',
-	outputStyle: 'compressed'
+	// outputStyle: 'compressed'
 }, (err, result) => {
-	// console.log('result.css = ' + result.css)
+	console.log('result.css = ' + result);
+	console.log(err);
 	fs.writeFile('static/styles/main.css', result.css, 'utf8', (err, done) => {
 		console.log('Done writing css!')
 	})
@@ -35,7 +36,7 @@ app.use(session({
 app.use((request, response, next) => {
 	const allowedAdminPath = /(^\/admin$|^\/admin\/.*)/;
 	if(allowedAdminPath.test(request.path)){
-		if (request.session.username !== false && request.session.username !== undefined){
+		if (request.session.username !== undefined){
 			console.log('access to admin\n');
 			next();
 		} else {
@@ -49,9 +50,9 @@ app.use((request, response, next) => {
 });
 
 //ROUTES
-const postRouter = require(__dirname + '/controllers/post.js');
-const adminRouter = require(__dirname + '/controllers/admin.js'); //uses same model as postRouter
-const authRouter = require(__dirname + '/controllers/auth.js');
+const postRouter = require(__dirname + '/routes/post.js');
+const adminRouter = require(__dirname + '/routes/admin.js'); //uses same model as postRouter
+const authRouter = require(__dirname + '/routes/auth.js');
 
 app.get('/', function (req, res) {
   res.render('index', { title: 'Hey', message: 'Hello there!' })
