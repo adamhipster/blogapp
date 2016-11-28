@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require(__dirname + '/../models/post.js');
+const markdownParser = require(__dirname + '/../models/showdown_server.js');
 
 router.route('/archive')
 	.get( (request, response) => {
@@ -31,12 +32,10 @@ router.route('/:postTitle')
 	.get( (request, response) => {
 		let postTitle = model.getPostByTitle(request.params.postTitle);
 		postTitle.then( (post) => {
-			console.log('routing /:postTitle...\n');
-			console.log(post);
 			response.render('detail',
 			{
 				username: request.session.username,
-				post: post[0],
+				post: {title: post[0].title, body: markdownParser.makeHtml(post[0].body)},
 			});
 		});
 	});
