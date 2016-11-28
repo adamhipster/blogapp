@@ -2,51 +2,37 @@
 
 const express = require('express');
 const router = express.Router();
-const model = require(__dirname + '/../models/auth.js');
-const bcrypt = require('bcrypt');
+const authModel = require(__dirname + '/../models/auth.js');
+const userModel = require(__dirname + '/../models/user.js');
 
 router.route('/login')
 	.get( (request, response) => {
 		response.render('login');
 	})
 	.post( (request, response) => {
-		const auth = request.body;
-		request.session.username = auth.username;
-		request.session.password = auth.password;
-		let session = request.session;
-		console.log(session.username);
-		model.getUsername(session.username)
-		.then( (modelUsername) => {
-			if(session.username === modelUsername){
-				return Promise.resolve(model.getPassword(session.username) ); 
+		userModel.getUser(request.body.username)
+		.then( (user) => { 
+			return authModel.authenticate(request.body.password, user);
+		})
+		.then( (isAuthenticated) => {
+			if(isAuthenticated){
+				request.session.username = request.body.username;
+				response.redirect('/admin');
 			}
 			else{
-				return Promise.reject('username was not found.');
+				return Promise.reject("isAuthenticated == false");
 			}
 		})
-		.then( (modelPassword) => {
-			console.log('modelPassword: ' + modelPassword);
-			bcrypt.compare(session.password, modelPassword, (err, samePasswords) => {
-				console.log('err ', err);
-				console.log('samePasswords: ' + samePasswords);
-				if(samePasswords){
-					response.redirect('/admin');
-				}
-				else{
-					response.redirect('login?auth=false');
-				}
-			});
-		})
-		.catch(error => {
-			console.log(error);
-			response.redirect('login?auth=false');
+		.catch( (whyNotAuthenticated) => {
+			console.log("Catch unauthenticated user: " + whyNotAuthenticated);
+			response.redirect('/auth/login');
 		});
 	});
 
 router.route('/logout')
 	.get( (request, response) => {
 		request.session.regenerate(function onComplete(error) {
-			response.end("Sucessfully logged out.\n");
+			response.redirect('/admin');
 		});
 	});
 
