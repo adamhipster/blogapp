@@ -1,6 +1,9 @@
 html
 	head
-		include partialViews/head.pug
+		include partialViews/head.pug	
+		script(src='https://code.jquery.com/jquery-1.10.1.min.js')
+		script(src='../static/markdown_editor/ghostdown.js')
+		link(href='../static/markdown_editor/ghostdown.css', media='all', rel='stylesheet')
 	body
 		include partialViews/nav.pug
 
@@ -13,9 +16,25 @@ html
 
 				.input-field.s12
 					label(for='post') Post
-					textarea(id='pBody' type='text'  name='body' rows='10' cols='100')
-						| #{body}
-				
+					.features
+						section.editor
+							.outer
+								.editorwrap
+									section.entry-markdown
+										header.floatingheader  &nbsp;&nbsp; Markdown
+										section.entry-markdown-content
+											textarea(id='entry-markdown' type='text'  name='body')
+												if body === undefined
+													| > ###Type your *markdown* **here**
+												else 
+													| #{body}
+									section.entry-preview.active
+										header.floatingheader
+											| Preview 
+											span.entry-word-count 0 words
+										section.entry-preview-content
+											.rendered-markdown
+							
 				button.btn.waves-effect.waves-light(type='submit' name='action') Submit
 					i.material-icons.right send
 
@@ -25,6 +44,14 @@ html
 				p.flow-text <a href="/#{post.title}"> #{post.title}</a>   
 					a.material-icons(href='/admin/'+post.title+'/delete') delete  
 					a.material-icons(href='/admin/'+post.title+'/edit?title='+post.title) edit
+
+
+		
+
+
+
+		
+
 
 
 		include partialViews/footer.pug

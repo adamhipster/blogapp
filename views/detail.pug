@@ -5,7 +5,6 @@ html
 		include partialViews/nav.pug
 		section.container
 			h4 #{post.title}
-			p.flow-text #{post.body}
-
+			div#rendered-markdown!=post.body
 
 		include partialViews/footer.pug
