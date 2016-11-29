@@ -3,7 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const authModel = require(__dirname + '/../models/auth.js');
-const userModel = require(__dirname + '/../models/sequelize_db/schema.js'); //change later to user.js
+const userModel = require(__dirname + '/../models/sequelize_db/schema.js'); //todo: change later to user.js
+// const userModel = require(__dirname + '/../models/mongo_db/user.js');
 
 router.route('/login')
 	.get( (request, response) => {
