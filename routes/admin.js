@@ -14,7 +14,7 @@ ANATOMY OF A POST (_id is automatically generated)
 
 const express = require('express');
 const router = express.Router();
-const model = require(__dirname + '/../models/post.js');
+const model = require(__dirname + '/../models/sequelize_db/schema.js'); //change later to post.js
 
 router.route('/')
 	.get( (request, response) => {
