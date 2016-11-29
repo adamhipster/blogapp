@@ -2,14 +2,15 @@
 
 const express = require('express');
 const router = express.Router();
-const model = require(__dirname + '/../models/post.js');
+const model = require(__dirname + '/../models/sequelize_db/schema.js'); //todo: change later to post.js
+// const model = require(__dirname + '/../models/mongo_db/post.js');
+
 const markdownParser = require(__dirname + '/../models/showdown_server.js');
 
 router.route('/archive')
 	.get( (request, response) => {
 		let posts = model.getAllPosts();
 		posts.then( (allPosts) => {
-			console.log(request.session.username);
 			response.render('archive',
 			{
 				username: request.session.username,
@@ -37,7 +38,8 @@ router.route('/:postTitle')
 				username: request.session.username,
 				post: {title: post[0].title, body: markdownParser.makeHtml(post[0].body)},
 			});
-		});
+		})
+		.catch( (error) => {console.log(error);});
 	});
 
 
