@@ -16,6 +16,9 @@ const express = require('express');
 const router = express.Router();
 const model = require(__dirname + '/../models/sequelize_db/schema.js'); //todo: change later to post.js
 // const model = require(__dirname + '/../models/mongo_db/post.js');
+let isBrowser = require('user-agent-is-browser');
+
+
 
 router.route('/')
 	.get( (request, response) => {
@@ -29,6 +32,9 @@ router.route('/')
 				request.session.postBody = '';
 				request.session.postTitle = '';
 				request.session.isEdited = false;
+				if(!isBrowser(request.headers['user-agent'])){
+					response.json({username: request.session.username, posts: posts, title: title, body: body}); return;
+				}
 			response.render('admin', 
 				{
 					username: request.session.username,	
@@ -40,6 +46,9 @@ router.route('/')
 				console.log('isEdited: ' + request.session.isEdited);
 			}
 			else{
+				if(!isBrowser(request.headers['user-agent'])){
+					response.json({username: request.session.username, posts: posts}); return;
+				}
 			response.render('admin', 
 				{
 					username: request.session.username,

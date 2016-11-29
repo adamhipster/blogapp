@@ -24,3 +24,5 @@ GENERAL REQUIREMENTS
 	e) Use webpack
 	f) Use dotenv
 	g) Use ajax (I prefer to start with a degradable experience)
+	h) apply gzip, http-caching (fingerprint your builds) and modules
+	i) give commandline argument to switch database modes

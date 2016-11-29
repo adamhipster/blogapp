@@ -109,7 +109,6 @@ getPostByTitle: (title) => {
 	});
 },
 
-//I'd need a way to force that you can only find one, but this will suffice
 getUser: (username) => {
 	return User.findOne({
 		where: {

@@ -31,7 +31,8 @@
     "node-sass": "^3.13.0",
     "pg": "^6.1.0",
     "pug": "^2.0.0-beta6",
-    "sequelize": "^3.27.0"
+    "sequelize": "^3.27.0",
+    "user-agent-is-browser": "^0.1.0"
   },
   "devDependencies": {}
 }
