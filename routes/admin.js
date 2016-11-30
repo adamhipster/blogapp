@@ -32,9 +32,6 @@ router.route('/')
 				request.session.postBody = '';
 				request.session.postTitle = '';
 				request.session.isEdited = false;
-				if(!isBrowser(request.headers['user-agent'])){
-					response.json({username: request.session.username, posts: posts, title: title, body: body}); return;
-				}
 			response.render('admin', 
 				{
 					username: request.session.username,	
@@ -46,9 +43,6 @@ router.route('/')
 				console.log('isEdited: ' + request.session.isEdited);
 			}
 			else{
-				if(!isBrowser(request.headers['user-agent'])){
-					response.json({username: request.session.username, posts: posts}); return;
-				}
 			response.render('admin', 
 				{
 					username: request.session.username,

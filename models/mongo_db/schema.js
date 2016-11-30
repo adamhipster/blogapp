@@ -4,7 +4,7 @@
 //open node and type require('bcrypt') and then
 //bcrypt.hash('your_password', 10, (err, hash) => { console.log(hash) })
 db.users.insertOne(
-	{firstname: "Melvin", lastname: "Roest", username: "mella", password: "$2a$10$Ggg0Usp6T2a.lJMbTWrLEupiZUJBjH4uQy.G1tpzxu9gX9EtnJyUm"}
+	{firstname: "Melvin", lastname: "Roest", username: "unicorn", password: "$2a$10$Ggg0Usp6T2a.lJMbTWrLEupiZUJBjH4uQy.G1tpzxu9gX9EtnJyUm"}
 )
 
 db.posts.insertOne(
@@ -30,3 +30,8 @@ db.dropDatabase()
 
 //forEach method
 db.posts.find({},{}).sort( { _id: 1 } ).forEach( function(myDoc) { print(myDoc.body) } )
+
+
+db.users.insertOne(
+	{firstname: "Melvin", lastname: "Roest", username: "unicorn", password: "$2a$10$sHFGNrjoQaJrPYcus4KGYezQN3dQ5ucDVBJkOyIkeHAT72y8M6PXW"}
+)

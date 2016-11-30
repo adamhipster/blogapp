@@ -5,6 +5,7 @@ var session = require('express-session');
 let portNumber = 3000;
 const sass = require('node-sass');
 const fs = require('fs');
+let renderExtMiddleware = require('./my_modules/renderExtMiddleware');
 
 sass.render({
 	file: __dirname + '/static/styles/main.scss',
@@ -18,6 +19,10 @@ sass.render({
 })
 
 //MIDDLEWARE
+
+//if browser is not client, then gives response back in json -- without altering `res.render(args)`.
+app.use(renderExtMiddleware);
+
 app.use('/static', express.static(__dirname + '/static'));
 
 //see http://stackoverflow.com/questions/24330014/bodyparser-is-deprecated-express-4

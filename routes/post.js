@@ -15,9 +15,6 @@ router.route('/archive')
 
 			console.log('hey');
 			
-			if(!isBrowser(request.headers['user-agent'])){
-				response.json({username: request.session.username, posts: allPosts}); return;
-			}
 			response.render('archive',
 			{
 				username: request.session.username,
@@ -40,9 +37,6 @@ router.route('/:postTitle')
 	.get( (request, response) => {
 		let postTitle = model.getPostByTitle(request.params.postTitle);
 		postTitle.then( (post) => {
-			if(!isBrowser(request.headers['user-agent'])){
-				response.json({username: request.session.username, post: post[0]}); return;
-			}
 			response.render('detail',
 			{
 				username: request.session.username,
