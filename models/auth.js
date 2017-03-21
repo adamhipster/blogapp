@@ -8,7 +8,8 @@ exports.authenticate = (password, user) => {
 		bcrypt.compare(password, user.password, (error, samePasswords) => {
 			if(error) reject(new Error("bcrypt.compare(args) failed:" + error));
 			resolve(samePasswords);
-		});
-	});
+		})
+	})
+	.catch( error => console.log(error))
 }
 

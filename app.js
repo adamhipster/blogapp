@@ -2,7 +2,7 @@ const config = require('./config.js');
 let express = require('express');
 let app = express();
 var session = require('express-session');
-let portNumber = 3000;
+let portNumber = 3001;
 const sass = require('node-sass');
 const fs = require('fs');
 let renderExtMiddleware = require('./my_modules/renderExtMiddleware');
@@ -34,8 +34,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(session({
     secret: config.session_secret,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true,
+	cookie: {
+		httpOnly: false,
+		secure: false
+  	}
   }));
 
 app.use((request, response, next) => {

@@ -24,8 +24,6 @@ router.route('/')
 	.get( (request, response) => {
 		let posts = model.getAllPosts();
 		posts.then( (posts) => {
-			console.log('session...\n');
-			console.log(request.session);
 			if(request.session.isEdited){
 				const body = request.session.postBody;
 				const title = request.session.postTitle;
@@ -40,7 +38,6 @@ router.route('/')
 					body: body,
 					posts: posts, 
 				});
-				console.log('isEdited: ' + request.session.isEdited);
 			}
 			else{
 			response.render('admin', 
@@ -49,7 +46,6 @@ router.route('/')
 					action: '/admin/createPost',
 					posts: posts, 
 				});
-				console.log('isEdited ' + request.session.isEdited);
 			}
 		});
 	});
@@ -92,16 +88,8 @@ router.route('/:postTitle/delete')
 
 router.route('/:postTitle/edit')
 	.get( (request, response) => {
-		console.log('request.params.title\n');
-		console.log(request.params.title);
 		let postTitle = model.getPostByTitle(request.query.title);
-		//Waarom wordt result als een array teruggegeven?
-		//Geeft de onderliggende implementatie het zo terug? This has to change...
 		postTitle.then( (result) => {
-			console.log('postTitle');
-			console.log(result);
-			console.log(result[0].body);
-			console.log(result[0].title);
 			request.session.postBody = result[0].body;
 			request.session.postTitle = result[0].title;
 			request.session.isEdited = true;
@@ -119,8 +107,6 @@ router.route('/:postTitle/edit')
 		if(hasAllProperties){
 			let editedPost = model.editPostByTitle(request.params.postTitle, post.title, post.body);
 			editedPost.then( (result) => {
-				console.log('post edited\n');
-				console.log(result);
 				response.redirect('/admin');
 			});
 		}

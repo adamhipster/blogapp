@@ -3,3 +3,21 @@
 .m-navbar-text {
 	padding: 0 15px;
 }
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+	flex: 1 0 auto;
+}
+
+nav {
+	background-color: rgba(3, 12, 62, 0.14);
+}
+
+footer.page-footer {
+	background-color: rgba(3, 12, 62, 0.14);
+}

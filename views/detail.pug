@@ -3,8 +3,9 @@ html
 		include partialViews/head.pug
 	body
 		include partialViews/nav.pug
-		section.container
-			h4 #{post.title}
-			div#rendered-markdown!=post.body
+		main
+			section.container
+				h4 #{post.title}
+				div#rendered-markdown!=post.body
 
 		include partialViews/footer.pug

@@ -1,11 +1,12 @@
 
-nav
-	div.nav-wrapper
-		if username !== undefined
-			div.right.flow-text.m-navbar-text Logged in as #{username}   
-		ul.left
-			li
-				a(href='/archive') <span class="flow-text">Archive</span>
+header
+	nav
+		div.nav-wrapper.blue-grey.lighten-1
 			if username !== undefined
+				div.right.flow-text.m-navbar-text Logged in as #{username}   
+			ul.left
 				li
-					a(href='/auth/logout') <span class="flow-text">Logout<span>
+					a(href='/archive') <span class="flow-text">Archive</span>
+				if username !== undefined
+					li
+						a(href='/auth/logout') <span class="flow-text">Logout<span>

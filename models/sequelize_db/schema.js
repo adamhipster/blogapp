@@ -109,6 +109,30 @@ getPostByTitle: (title) => {
 	});
 },
 
+// getUserVulnerable: (username) => {
+// 	return db.query("SELECT * FROM users WHERE username = :username"
+// 	,{
+// 		replacements:
+// 		{
+// 			username: username,
+// 			type: db.QueryTypes.SELECT
+// 		}
+// 	}
+// 	)
+// 	.then( (result) => {
+// 		return result[0][0]
+// 	})
+// },
+
+getUserVulnerable: (username) => {
+	console.log('username')
+	console.log(username)
+	return db.query("SELECT * FROM users WHERE username = '" + username + "'")
+	.then( (result) => {
+		return result[0][0]
+	})
+},
+
 getUser: (username) => {
 	return User.findOne({
 		where: {

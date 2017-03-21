@@ -3,11 +3,13 @@ html
 		include partialViews/head.pug
 	body
 		include partialViews/nav.pug
-		section.container
-			h4 Posts
-			each post in posts
-				br
-				a.flow-text(href='/'+post.title) #{post.title}
+		
+		main
+			section.container
+				h4 Posts
+				each post in posts
+					br
+					a.flow-text(href='/'+post.title) #{post.title}
 				
 
 
